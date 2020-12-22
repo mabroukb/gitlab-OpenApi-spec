@@ -13,6 +13,7 @@ paths:
         Get a list of all visible projects across GitLab for the authenticated user. 
         When accessed without authentication, only public projects with simple fields are returned.
         https://docs.gitlab.com/ee/api/projects.html
+      summary: List all projects. 
       parameters:
         - name: tags
           in: query
@@ -32,143 +33,143 @@ paths:
             format: int32
         - name: archived
           in: query
-          description: No  Limit by archived status.
+          description: Limit by archived status.
           required: false
           schema:
             type: boolean
         - name: id_after
           in: query
-          description: No Limit results to projects with IDs greater than the specified ID.
+          description: Limit results to projects with IDs greater than the specified ID.
           required: false
           schema:
             type: integer
         - name: id_before
           in: query
-          description: No  Limit results to projects with IDs less than the specified ID.
+          description: Limit results to projects with IDs less than the specified ID.
           required: false
           schema:
             type: integer
         - name: last_activity_after
           in: query
-          description: No  Limit results to projects with last_activity after specified time. Format ISO8601 YYYY-MM-DDTHH:MM:SSZ
+          description: Limit results to projects with last_activity after specified time. Format ISO8601 YYYY-MM-DDTHH:MM:SSZ
           required: false
           schema:
             type: string
             format: date-time
         - name: last_activity_before
           in: query
-          description: No  Limit results to projects with last_activity before specified time. Format ISO 8601 YYYY-MM-DDTHH:MM:SSZ
+          description: Limit results to projects with last_activity before specified time. Format ISO 8601 YYYY-MM-DDTHH:MM:SSZ
           required: false
           schema:
             type: string
             format: date-time
         - name: membership
           in: query
-          description: No  Limit by projects that the current user is a member of.
+          description: Limit by projects that the current user is a member of.
           required: false
           schema:
             type: boolean
         - name: min_access_level
           in: query
-          description: No  Limit by current user minimal access level.
+          description: Limit by current user minimal access level.
           required: false
           schema:
             type: integer
         - name: order_by
           in: query
-          description: No  Return projects ordered by id, name, path, created_at, updated_at, or last_activity_at fields. repository_size, storage_size, packages_size or wiki_size fields are only allowed for admins. Default is created_at.
+          description: Return projects ordered by id, name, path, created_at, updated_at, or last_activity_at fields. repository_size, storage_size, packages_size or wiki_size fields are only allowed for admins. Default is created_at.
           required: false
           schema:
             type: string
         - name: owned
           in: query
-          description: No  Limit by projects explicitly owned by the current user.
+          description: Limit by projects explicitly owned by the current user.
           required: false
           schema:
             type: boolean
         - name: repository_checksum_failed
           in: query
-          description: No  Limit projects where the repository checksum calculation has failed (Introduced in GitLab Premium 11.2).
+          description: Limit projects where the repository checksum calculation has failed (Introduced in GitLab Premium 11.2).
           required: false
           schema:
             type: boolean
         - name: repository_storage
           in: query
-          description: No  Limit results to projects stored on repository_storage. (admins only)
+          description: Limit results to projects stored on repository_storage. (admins only)
           required: false
           schema:
             type: string     
         - name: search_namespaces
           in: query
-          description: No  Include ancestor namespaces when matching search criteria. Default is false.
+          description: Include ancestor namespaces when matching search criteria. Default is false.
           required: false
           schema:
             type: boolean
         - name: search
           in: query
-          description: No  Return list of projects matching the search criteria.
+          description: Return list of projects matching the search criteria.
           required: false
           schema:
             type: string
             format: int32
         - name: simple
           in: query
-          description: No  Return only limited fields for each project. This is a no-op without authentication as then only simple fields are returned.
+          description: Return only limited fields for each project. This is a no-op without authentication as then only simple fields are returned.
           required: false
           schema:
             type: boolean
             format: int32
         - name: sort
           in: query
-          description: No  Return projects sorted in asc or desc order. Default is desc.
+          description: Return projects sorted in asc or desc order. Default is desc.
           required: false
           schema:
             type: string
         - name: starred
           in: query
-          description: No  Limit by projects starred by the current user.
+          description: Limit by projects starred by the current user.
           required: false
           schema:
             type: boolean
         - name: statistics
           in: query
-          description: No  Include project statistics.
+          description: Include project statistics.
           required: false
           schema:
             type: boolean
         - name: visibility
           in: query
-          description: No  Limit by visibility public, internal, or private.
+          description: Limit by visibility public, internal, or private.
           required: false
           schema:
             type: string
         - name: wiki_checksum_failed
           in: query
-          description: No  Limit projects where the wiki checksum calculation has failed (Introduced in GitLab Premium 11.2).
+          description: Limit projects where the wiki checksum calculation has failed (Introduced in GitLab Premium 11.2).
           required: false
           schema:
             type: boolean
         - name: with_custom_attributes
           in: query
-          description: No  Include custom attributes in response. (admins only)
+          description: Include custom attributes in response. (admins only)
           required: false
           schema:
             type: boolean
         - name: with_issues_enabled
           in: query
-          description: No  Limit by enabled issues feature.
+          description: Limit by enabled issues feature.
           required: false
           schema:
             type: boolean
         - name: with_merge_requests_enabled
           in: query
-          description: No  Limit by enabled merge requests feature.
+          description: Limit by enabled merge requests feature.
           required: false
           schema:
             type: boolean
         - name: with_programming_language
           in: query
-          description: No  Limit by projects which use the given programming language.
+          description: Limit by projects which use the given programming language.
           required: false
           schema:
             type: string
@@ -187,6 +188,46 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /projects/{projectId}:
+    get:
+      description: |
+        Get a specific project. This endpoint can be accessed without authentication if the project is publicly accessible.
+      summary: Get a specific project.
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          description: The ID or URL-encoded path of the project.
+          schema:
+            type: string
+        - name: license
+          description: Include project license data.
+          in: query
+          schema:
+            type: boolean
+        - name: statistics
+          in: query
+          description: Include project statistics.
+          schema:
+            type: boolean
+        - name: with_custom_attributes
+          in: query
+          description: Include custom attributes in response. (admins only)
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Project"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
 components:
   schemas:
     Error:
