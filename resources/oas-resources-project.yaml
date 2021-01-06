@@ -230,8 +230,10 @@ paths:
                 $ref: "#/components/schemas/Error"
   /projects/user/{user_id}:
     post:
+      summary: Creates a new project owned by the specified user. 
       description: |
-        Creates a new project owned by the specified user. Available only for admins.
+        Creates a new project owned by the authenticated user.
+        Available only for admins.
       requestBody:
         content: 
           application/json:
@@ -257,6 +259,44 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /projects/{project_id}:
+    put:
+      summary : Upload a project avatar
+      description: |
+        Uploads an avatar to the specified project.
+      requestBody:
+        content: 
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                avatar:
+                  description: The file to be uploaded.
+                  type: string
+                  format: binary
+                  required:
+                    - avatar
+      parameters:
+        - name: project_id
+          in: path
+          required: true
+          description: The ID or URL-encoded path of the project.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Project"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
 components:
   schemas:
     Error:
