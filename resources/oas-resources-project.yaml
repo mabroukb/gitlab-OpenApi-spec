@@ -33,143 +33,143 @@ paths:
             format: int32
         - name: archived
           in: query
-          description: Limit by archived status.
+          description: No  Limit by archived status.
           required: false
           schema:
             type: boolean
         - name: id_after
           in: query
-          description: Limit results to projects with IDs greater than the specified ID.
+          description: No Limit results to projects with IDs greater than the specified ID.
           required: false
           schema:
             type: integer
         - name: id_before
           in: query
-          description: Limit results to projects with IDs less than the specified ID.
+          description: No  Limit results to projects with IDs less than the specified ID.
           required: false
           schema:
             type: integer
         - name: last_activity_after
           in: query
-          description: Limit results to projects with last_activity after specified time. Format ISO8601 YYYY-MM-DDTHH:MM:SSZ
+          description: No  Limit results to projects with last_activity after specified time. Format ISO8601 YYYY-MM-DDTHH:MM:SSZ
           required: false
           schema:
             type: string
             format: date-time
         - name: last_activity_before
           in: query
-          description: Limit results to projects with last_activity before specified time. Format ISO 8601 YYYY-MM-DDTHH:MM:SSZ
+          description: No  Limit results to projects with last_activity before specified time. Format ISO 8601 YYYY-MM-DDTHH:MM:SSZ
           required: false
           schema:
             type: string
             format: date-time
         - name: membership
           in: query
-          description: Limit by projects that the current user is a member of.
+          description: No  Limit by projects that the current user is a member of.
           required: false
           schema:
             type: boolean
         - name: min_access_level
           in: query
-          description: Limit by current user minimal access level.
+          description: No  Limit by current user minimal access level.
           required: false
           schema:
             type: integer
         - name: order_by
           in: query
-          description: Return projects ordered by id, name, path, created_at, updated_at, or last_activity_at fields. repository_size, storage_size, packages_size or wiki_size fields are only allowed for admins. Default is created_at.
+          description: No  Return projects ordered by id, name, path, created_at, updated_at, or last_activity_at fields. repository_size, storage_size, packages_size or wiki_size fields are only allowed for admins. Default is created_at.
           required: false
           schema:
             type: string
         - name: owned
           in: query
-          description: Limit by projects explicitly owned by the current user.
+          description: No  Limit by projects explicitly owned by the current user.
           required: false
           schema:
             type: boolean
         - name: repository_checksum_failed
           in: query
-          description: Limit projects where the repository checksum calculation has failed (Introduced in GitLab Premium 11.2).
+          description: No  Limit projects where the repository checksum calculation has failed (Introduced in GitLab Premium 11.2).
           required: false
           schema:
             type: boolean
         - name: repository_storage
           in: query
-          description: Limit results to projects stored on repository_storage. (admins only)
+          description: No  Limit results to projects stored on repository_storage. (admins only)
           required: false
           schema:
             type: string     
         - name: search_namespaces
           in: query
-          description: Include ancestor namespaces when matching search criteria. Default is false.
+          description: No  Include ancestor namespaces when matching search criteria. Default is false.
           required: false
           schema:
             type: boolean
         - name: search
           in: query
-          description: Return list of projects matching the search criteria.
+          description: No  Return list of projects matching the search criteria.
           required: false
           schema:
             type: string
             format: int32
         - name: simple
           in: query
-          description: Return only limited fields for each project. This is a no-op without authentication as then only simple fields are returned.
+          description: No  Return only limited fields for each project. This is a no-op without authentication as then only simple fields are returned.
           required: false
           schema:
             type: boolean
             format: int32
         - name: sort
           in: query
-          description: Return projects sorted in asc or desc order. Default is desc.
+          description: No  Return projects sorted in asc or desc order. Default is desc.
           required: false
           schema:
             type: string
         - name: starred
           in: query
-          description: Limit by projects starred by the current user.
+          description: No  Limit by projects starred by the current user.
           required: false
           schema:
             type: boolean
         - name: statistics
           in: query
-          description: Include project statistics.
+          description: No  Include project statistics.
           required: false
           schema:
             type: boolean
         - name: visibility
           in: query
-          description: Limit by visibility public, internal, or private.
+          description: No  Limit by visibility public, internal, or private.
           required: false
           schema:
             type: string
         - name: wiki_checksum_failed
           in: query
-          description: Limit projects where the wiki checksum calculation has failed (Introduced in GitLab Premium 11.2).
+          description: No  Limit projects where the wiki checksum calculation has failed (Introduced in GitLab Premium 11.2).
           required: false
           schema:
             type: boolean
         - name: with_custom_attributes
           in: query
-          description: Include custom attributes in response. (admins only)
+          description: No  Include custom attributes in response. (admins only)
           required: false
           schema:
             type: boolean
         - name: with_issues_enabled
           in: query
-          description: Limit by enabled issues feature.
+          description: No  Limit by enabled issues feature.
           required: false
           schema:
             type: boolean
         - name: with_merge_requests_enabled
           in: query
-          description: Limit by enabled merge requests feature.
+          description: No  Limit by enabled merge requests feature.
           required: false
           schema:
             type: boolean
         - name: with_programming_language
           in: query
-          description: Limit by projects which use the given programming language.
+          description: No  Limit by projects which use the given programming language.
           required: false
           schema:
             type: string
@@ -215,6 +215,35 @@ paths:
           description: Include custom attributes in response. (admins only)
           schema:
             type: boolean
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Project"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /projects/user/{user_id}:
+    post:
+      description: |
+        Creates a new project owned by the specified user. Available only for admins.
+      requestBody:
+        content: 
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project_to_create'
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          description: The user ID of the project owner.
+          schema:
+            type: string
       responses:
         '200':
           description: Expected response to a valid request
@@ -293,6 +322,7 @@ components:
           format: uri
         merge_requests:
           type: string
+          description: dd
           format: uri
         repo_branches:
           type: string
@@ -419,4 +449,190 @@ components:
           $ref: '#/components/schemas/Statistics'
         _links:
           $ref: '#/components/schemas/RelatedLinks'
+    Project_to_create:
+      type: object
+      properties:
+        # avatar: excluded for the moment, don,'t know how to mix json body and file upload
+        allow_merge_on_skipped_pipeline:
+          type: boolean
+          description: Set whether or not merge requests can be merged with skipped jobs.
+        analytics_access_level:
+          type: string
+          description: One of disabled, private or enabled
+        approvals_before_merge :
+          type: integer
+          description: How many approvers should approve merge requests by default.
+        auto_cancel_pending_pipelines:
+          type: string
+          description: Auto-cancel pending pipelines. This isn’t a boolean, but enabled/disabled.
+        auto_devops_deploy_strategy:
+          type: string
+          description: Auto Deploy strategy (continuous, manual or timed_incremental).
+        auto_devops_enabled:
+          type: boolean
+          description: Enable Auto DevOps for this project.
+        autoclose_referenced_issues:
+          type: boolean
+          description: Set whether auto-closing referenced issues on default branch.
+        build_coverage_regex:
+          type: string
+          description: Test coverage parsing.
+        build_git_strategy:
+          type: string
+          description: The Git strategy. Defaults to fetch.
+        build_timeout:
+          type: integer
+          description: The maximum amount of time in minutes that a job is able run (in seconds).
+        builds_access_level:
+          type: string
+          description: One of disabled, private, or enabled.
+        ci_config_path:
+          type: string
+          description: The path to CI configuration file.
+        container_expiration_policy_attributes:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              cadence:
+                type: string
+              keep_n:
+                type: integer
+              older_than:
+                type: string
+              name_regex:
+                type: string
+              name_regex_delete:
+                type: string
+              name_regex_keep:
+                type: string
+              enabled:
+                type: boolean
+          description: Update the image cleanup policy for this project. Accepts  cadence (string), keep_n (integer), older_than (string), name_regex (string), name_regex_delete (string), name_regex_keep (string), enabled (boolean).
+        container_registry_enabled:
+          type: boolean
+          description: Enable container registry for this project.
+        default_branch:
+          type: string
+          description: master by default.
+        description:
+          type: string
+          description: Short project description.
+        emails_disabled:
+          type: boolean
+          description: Disable email notifications.
+        external_authorization_classification_label :
+          type: string
+          description: The classification label for the project.
+        forking_access_level:
+          type: string
+          description: One of disabled, private, or enabled.
+        group_with_project_templates_id :
+          type: integer
+          description: For group-level custom templates, specifies ID of group from which all the custom project templates are sourced. Leave empty for instance-level templates. Requires use_custom_template to be true.
+        import_url:
+          type: string
+          description: URL to import repository from.
+        initialize_with_readme:
+          type: boolean
+          description: false by default.
+        issues_access_level:
+          type: string
+          description: One of disabled, private, or enabled.
+        lfs_enabled:
+          type: boolean
+          description: Enable LFS.
+        merge_method:
+          type: string
+          description: Set the merge method used.
+        merge_requests_access_level:
+          type: string
+          description: One of disabled, private, or enabled.
+        mirror_trigger_builds :
+          type: boolean
+          description: Pull mirroring triggers builds.
+        mirror :
+          type: boolean
+          description: Enables pull mirroring in a project.
+        name:
+          type: string
+          description: The name of the new project. Equals path if not provided.
+        namespace_id:
+          type: integer
+          description: Namespace for the new project (defaults to the current user’s namespace).
+        operations_access_level:
+          type: string
+          description: One of disabled, private, or enabled.
+        only_allow_merge_if_all_discussions_are_resolved:
+          type: boolean
+          description: Set whether merge requests can only be merged when all the discussions are resolved.
+        only_allow_merge_if_pipeline_succeeds:
+          type: boolean
+          description: Set whether merge requests can only be merged with successful jobs.
+        packages_enabled:
+          type: boolean
+          description: Enable or disable packages repository feature.
+        pages_access_level:
+          type: string
+          description: One of disabled, private, enabled, or public.
+        requirements_access_level:
+          type: string
+          description: One of disabled, private, enabled or public
+        path:
+          type: string
+          description: Repository name for new project. Generated based on name if not provided (generated as lowercase with dashes).
+        printing_merge_request_link_enabled:
+          type: boolean
+          description: Show link to create/view merge request when pushing from the command line.
+        public_builds:
+          type: boolean
+          description: If true, jobs can be viewed by non-project members.
+        remove_source_branch_after_merge:
+          type: boolean
+          description: Enable Delete source branch option by default for all new merge requests.
+        repository_access_level:
+          type: string
+          description: One of disabled, private, or enabled.
+        repository_storage:
+          type: string
+          description: Which storage shard the repository is on. (admins only)
+        request_access_enabled:
+          type: boolean
+          description: Allow users to request member access.
+        resolve_outdated_diff_discussions:
+          type: boolean
+          description: Automatically resolve merge request diffs discussions on lines changed with a push.
+        shared_runners_enabled:
+          type: boolean
+          description: Enable shared runners for this project.
+        show_default_award_emojis:
+          type: boolean
+          description: Show default award emojis.
+        snippets_access_level:
+          type: string
+          description: One of disabled, private, or enabled.
+        tag_list:
+          type: array
+          items:
+              type: string
+          description: The list of tags for a project; put array of tags, that should be finally assigned to a project.
+        template_name:
+          type: string
+          description: When used without use_custom_template, name of a built-in project template. When used with use_custom_template, name of a custom project template.
+        template_project_id :
+          type: integer
+          description: When used with use_custom_template, project ID of a custom project template. This is preferable to using template_name since template_name may be ambiguous.
+        use_custom_template :
+          type: boolean
+          description: Use either custom instance or group (with group_with_project_templates_id) project template.
+        visibility:
+          type: string
+          description: See project visibility level.
+        wiki_access_level:
+          type: string
+          description: One of disabled, private, or enabled.
+      oneOf:
+        - required: [name]
+        - required: [path]
+
 
