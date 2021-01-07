@@ -1,0 +1,243 @@
+openapi: 3.0.0
+info:
+  version: 4.0.0
+  title: Gitlab API - uncomplete
+  description: A retro documentation of the gitlab API.
+servers:
+  - url: 'https://localhost/api/v4'
+paths:
+  /projects/{project_id}/repository/commits:
+    get:
+      description: |
+        Get a list of repository commits in a project.
+        https://docs.gitlab.com/ee/api/projects.html https://docs.gitlab.com/ee/api/commits.html#list-repository-commits
+      summary: Get a list of repository commits in a project.
+      parameters:
+        - name: project_id
+          in: path
+          description: The ID or URL-encoded path of the project owned by the authenticated user
+          required: true
+          schema:
+            type: string
+        - name: ref_name
+          in: query
+          schema:
+            type: string  
+          required: false 
+          description: The name of a repository branch, tag or revision range, or if not given the default branch
+        - name: since
+          in: query
+          schema:
+            type: string  
+            format: date-time
+          required: false 
+          description: Only commits after or on this date will be returned in ISO 8601 format YYYY-MM-DDTHH:MM:SSZ
+        - name: until
+          in: query
+          schema:
+            type: string
+            format: date-time
+          required: false
+          description: Only commits before or on this date will be returned in ISO 8601 format YYYY-MM-DDTHH:MM:SSZ
+        - name: path
+          in: query
+          schema:
+            type: string  
+          required: false
+          description: The file path
+        - name: all
+          in: query
+          schema:
+            type: boolean 
+          required: false
+          description: Retrieve every commit from the repository
+        - name: with_stats
+          in: query
+          schema:
+            type: boolean 
+          required: false
+          description: Stats about each commit will be added to the response
+        - name: first_parent
+          in: query
+          schema:
+            type: boolean 
+          required: false
+          description: Follow only the first parent commit upon seeing a merge commit
+        - name: order
+          in: query
+          schema:
+            type: string
+          required: false
+          description: | 
+            List commits in order. Possible values: default, topo. Defaults to default, the commits are shown in reverse chronological order.
+      responses:
+        '200':
+          description: List of projects found.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Commit'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      description: |
+        Create a commit with multiple files and actions
+      summary: Create a commit by posting a JSON payload
+      requestBody:
+        content: 
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Commit_to_create'
+      parameters:
+        - name: project_id
+          in: path
+          required: true
+          description: The ID or URL-encoded path of the project.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref:  '#/components/schemas/Commit'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    Commit_to_create:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID or URL-encoded path of the project
+        branch:
+          type: string
+          description: Name of the branch to commit into. To create a new branch, also provide either start_branch or start_sha, and optionally start_project.
+        commit_message:
+          type: string
+          description: Commit message
+        start_branch:
+          type: string
+          description: Name of the branch to start the new branch from
+        start_sha:
+          type: string
+          description: SHA of the commit to start the new branch from
+        start_project:
+          type: string
+          description: The project ID or URL-encoded path of the project to start the new branch from. Defaults to the value of id.
+        actions:
+          type: array
+          items:
+              $ref : "#/components/schemas/Commit_Action"
+          description: An array of action hashes to commit as a batch. See the next table for what attributes it can take.
+        author_email:
+          type: string
+          description: Specify the commit author’s email address
+        author_name:
+          type: string
+          description: Specify the commit author’s name
+        stats:
+          type: boolean
+          description: Include commit stats. Default is true
+        force:
+          type: boolean
+          description: When true overwrites the target branch with a new commit based on the start_branch or start_sha
+      required:
+        - id
+        - branch
+        - commit_message
+    Commit_Action:
+      type: object
+      properties:
+        action:
+          type: string
+          description:  The action to perform, create, delete, move, update, chmod
+        file_path:
+          type: string
+          description:  Full path to the file. Ex. lib/class.rb
+        previous_path:
+          type: string
+          description:  Original full path to the file being moved. Ex. lib/class1.rb. Only considered for move action.
+        content:
+          type: string
+          description:  File content, required for all except delete, chmod, and move. Move actions that do not specify content will preserve the existing file content, and any other value of content will overwrite the file content.
+        encoding:
+          type: string
+          description:  text or base64. text is default.
+        last_commit_id:
+          type: string
+          description:  Last known file commit ID. Will be only considered in update, move, and delete actions.
+        execute_filemode:
+          type: boolean
+          description:  When true/false enables/disables the execute flag on the file. Only considered for chmod action.
+      required:
+        - action
+        - file_path
+    Commit:
+      type: object
+      properties:
+        id:
+          type: string
+        short_id:
+          type: string
+        title:
+          type: string
+        author_name:
+          type: string
+        author_email:
+          type: string
+        authored_date:
+          type: string
+          format: date-time
+        committed_date:
+          type: string
+          format: date-time
+        committer_name:
+          type: string
+        committer_email:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        message:
+          type: string
+        parent_ids:
+          type: array
+          items:
+            type: string
+        stats:
+          type: object
+          properties:
+            additions:
+              type: integer
+            deletions:
+              type: integer
+            total:
+              type: integer
+        status:
+          type: string
+          description: pending, running, success, failed, canceled
+        web_url:
+          type: string
