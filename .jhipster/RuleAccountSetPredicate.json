@@ -1,0 +1,43 @@
+{
+  "applications": ["effOrbac"],
+  "changelogDate": "20221217142809",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "rule_account_set_predicate",
+  "fields": [
+    {
+      "fieldName": "ruleAccountSetPredicateId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ruleId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "accountSetId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "operator",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "predicateOperand",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "RuleAccountSetPredicate",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "rule",
+      "otherEntityRelationshipName": "ruleId",
+      "relationshipName": "ruleId",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

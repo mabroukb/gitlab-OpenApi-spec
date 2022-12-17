@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="rule">
+      <h2 data-cy="ruleDetailsHeading"><span jhiTranslate="effOrbacApp.rule.detail.title">Rule</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ rule.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="effOrbacApp.rule.ruleId">Rule Id</span></dt>
+        <dd>
+          <span>{{ rule.ruleId }}</span>
+        </dd>
+        <dt><span jhiTranslate="effOrbacApp.rule.startDate">Start Date</span></dt>
+        <dd>
+          <span>{{ rule.startDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="effOrbacApp.rule.endDate">End Date</span></dt>
+        <dd>
+          <span>{{ rule.endDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="effOrbacApp.rule.ruleId">Rule Id</span></dt>
+        <dd>
+          <div *ngIf="rule.ruleId">
+            <a [routerLink]="['/privilege-set', rule.ruleId.id, 'view']">{{ rule.ruleId.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="effOrbacApp.rule.ruleId">Rule Id</span></dt>
+        <dd>
+          <div *ngIf="rule.ruleId">
+            <a [routerLink]="['/rule-account-set-predicate', rule.ruleId.id, 'view']">{{ rule.ruleId.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="effOrbacApp.rule.ruleId">Rule Id</span></dt>
+        <dd>
+          <div *ngIf="rule.ruleId">
+            <a [routerLink]="['/rule-attribute-predicate', rule.ruleId.id, 'view']">{{ rule.ruleId.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/rule', rule.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

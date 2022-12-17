@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="ruleAttributePredicate">
+      <h2 data-cy="ruleAttributePredicateDetailsHeading">
+        <span jhiTranslate="effOrbacApp.ruleAttributePredicate.detail.title">Rule Attribute Predicate</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ ruleAttributePredicate.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="effOrbacApp.ruleAttributePredicate.ruleAttributePredicateId">Rule Attribute Predicate Id</span></dt>
+        <dd>
+          <span>{{ ruleAttributePredicate.ruleAttributePredicateId }}</span>
+        </dd>
+        <dt><span jhiTranslate="effOrbacApp.ruleAttributePredicate.ruleId">Rule Id</span></dt>
+        <dd>
+          <span>{{ ruleAttributePredicate.ruleId }}</span>
+        </dd>
+        <dt><span jhiTranslate="effOrbacApp.ruleAttributePredicate.attributeName">Attribute Name</span></dt>
+        <dd>
+          <span>{{ ruleAttributePredicate.attributeName }}</span>
+        </dd>
+        <dt><span jhiTranslate="effOrbacApp.ruleAttributePredicate.operator">Operator</span></dt>
+        <dd>
+          <span>{{ ruleAttributePredicate.operator }}</span>
+        </dd>
+        <dt><span jhiTranslate="effOrbacApp.ruleAttributePredicate.attributeValues">Attribute Values</span></dt>
+        <dd>
+          <span>{{ ruleAttributePredicate.attributeValues }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/rule-attribute-predicate', ruleAttributePredicate.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+{
+  "effOrbacApp": {
+    "accountSubject": {
+      "home": {
+        "title": "Account Subjects",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Account Subject",
+        "createOrEditLabel": "Create or edit a Account Subject",
+        "notFound": "No Account Subjects found"
+      },
+      "created": "A new Account Subject is created with identifier {{ param }}",
+      "updated": "A Account Subject is updated with identifier {{ param }}",
+      "deleted": "A Account Subject is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Account Subject {{ id }}?"
+      },
+      "detail": {
+        "title": "Account Subject"
+      },
+      "id": "ID",
+      "accountId": "Account Id",
+      "principal": "Principal",
+      "accountId": "Account Id",
+      "accountId": "Account Id"
+    }
+  }
+}

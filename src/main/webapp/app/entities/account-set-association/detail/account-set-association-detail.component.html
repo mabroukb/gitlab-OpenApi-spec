@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="accountSetAssociation">
+      <h2 data-cy="accountSetAssociationDetailsHeading">
+        <span jhiTranslate="effOrbacApp.accountSetAssociation.detail.title">Account Set Association</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ accountSetAssociation.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="effOrbacApp.accountSetAssociation.accountSetId">Account Set Id</span></dt>
+        <dd>
+          <span>{{ accountSetAssociation.accountSetId }}</span>
+        </dd>
+        <dt><span jhiTranslate="effOrbacApp.accountSetAssociation.accountId">Account Id</span></dt>
+        <dd>
+          <span>{{ accountSetAssociation.accountId }}</span>
+        </dd>
+        <dt><span jhiTranslate="effOrbacApp.accountSetAssociation.startDate">Start Date</span></dt>
+        <dd>
+          <span>{{ accountSetAssociation.startDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="effOrbacApp.accountSetAssociation.endDate">End Date</span></dt>
+        <dd>
+          <span>{{ accountSetAssociation.endDate | formatMediumDate }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/account-set-association', accountSetAssociation.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

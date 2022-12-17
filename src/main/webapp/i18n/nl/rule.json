@@ -1,0 +1,29 @@
+{
+  "effOrbacApp": {
+    "rule": {
+      "home": {
+        "title": "Rules",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Maak een nieuwe Rule",
+        "createOrEditLabel": "Maak of wijzig een Rule",
+        "notFound": "No Rules found"
+      },
+      "created": "A new Rule is created with identifier {{ param }}",
+      "updated": "A Rule is updated with identifier {{ param }}",
+      "deleted": "A Rule is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Bent u zeker dat u Rule {{ id }} wilt verwijderen?"
+      },
+      "detail": {
+        "title": "Rule"
+      },
+      "id": "ID",
+      "ruleId": "Rule Id",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "ruleId": "Rule Id",
+      "ruleId": "Rule Id",
+      "ruleId": "Rule Id"
+    }
+  }
+}

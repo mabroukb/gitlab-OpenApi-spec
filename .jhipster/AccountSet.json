@@ -1,0 +1,39 @@
+{
+  "applications": ["effOrbac"],
+  "changelogDate": "20221217142509",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "account_set",
+  "fields": [
+    {
+      "fieldName": "accountSetId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "superSetId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "path",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "AccountSet",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "accountSetAssociation",
+      "otherEntityRelationshipName": "accountSetId",
+      "relationshipName": "accountSetId",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

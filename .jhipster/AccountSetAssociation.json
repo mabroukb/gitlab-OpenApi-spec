@@ -1,0 +1,45 @@
+{
+  "applications": ["effOrbac"],
+  "changelogDate": "20221217142609",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "account_set_association",
+  "fields": [
+    {
+      "fieldName": "accountSetId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "accountId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "AccountSetAssociation",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "accountSet",
+      "otherEntityRelationshipName": "accountSetId",
+      "relationshipName": "accountSetId",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "accountSubject",
+      "otherEntityRelationshipName": "accountId",
+      "relationshipName": "accountId",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

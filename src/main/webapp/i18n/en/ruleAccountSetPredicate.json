@@ -1,0 +1,29 @@
+{
+  "effOrbacApp": {
+    "ruleAccountSetPredicate": {
+      "home": {
+        "title": "Rule Account Set Predicates",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Rule Account Set Predicate",
+        "createOrEditLabel": "Create or edit a Rule Account Set Predicate",
+        "notFound": "No Rule Account Set Predicates found"
+      },
+      "created": "A new Rule Account Set Predicate is created with identifier {{ param }}",
+      "updated": "A Rule Account Set Predicate is updated with identifier {{ param }}",
+      "deleted": "A Rule Account Set Predicate is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Rule Account Set Predicate {{ id }}?"
+      },
+      "detail": {
+        "title": "Rule Account Set Predicate"
+      },
+      "id": "ID",
+      "ruleAccountSetPredicateId": "Rule Account Set Predicate Id",
+      "ruleId": "Rule Id",
+      "accountSetId": "Account Set Id",
+      "operator": "Operator",
+      "predicateOperand": "Predicate Operand",
+      "ruleId": "Rule Id"
+    }
+  }
+}
