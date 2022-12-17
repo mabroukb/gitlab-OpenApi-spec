@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="accountSet">
+      <h2 data-cy="accountSetDetailsHeading"><span jhiTranslate="effOrbacApp.accountSet.detail.title">Account Set</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ accountSet.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="effOrbacApp.accountSet.accountSetId">Account Set Id</span></dt>
+        <dd>
+          <span>{{ accountSet.accountSetId }}</span>
+        </dd>
+        <dt><span jhiTranslate="effOrbacApp.accountSet.name">Name</span></dt>
+        <dd>
+          <span>{{ accountSet.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="effOrbacApp.accountSet.superSetId">Super Set Id</span></dt>
+        <dd>
+          <span>{{ accountSet.superSetId }}</span>
+        </dd>
+        <dt><span jhiTranslate="effOrbacApp.accountSet.path">Path</span></dt>
+        <dd>
+          <span>{{ accountSet.path }}</span>
+        </dd>
+        <dt><span jhiTranslate="effOrbacApp.accountSet.accountSetId">Account Set Id</span></dt>
+        <dd>
+          <div *ngIf="accountSet.accountSetId">
+            <a [routerLink]="['/account-set-association', accountSet.accountSetId.id, 'view']">{{ accountSet.accountSetId.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/account-set', accountSet.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

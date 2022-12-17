@@ -1,0 +1,43 @@
+{
+  "applications": ["effOrbac"],
+  "changelogDate": "20221217142949",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "rule_attribute_predicate",
+  "fields": [
+    {
+      "fieldName": "ruleAttributePredicateId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ruleId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "attributeName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "operator",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "attributeValues",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "RuleAttributePredicate",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "rule",
+      "otherEntityRelationshipName": "ruleId",
+      "relationshipName": "ruleId",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

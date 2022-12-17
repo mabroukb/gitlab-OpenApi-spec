@@ -1,0 +1,29 @@
+{
+  "effOrbacApp": {
+    "ruleAttributePredicate": {
+      "home": {
+        "title": "Rule Attribute Predicates",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Maak een nieuwe Rule Attribute Predicate",
+        "createOrEditLabel": "Maak of wijzig een Rule Attribute Predicate",
+        "notFound": "No Rule Attribute Predicates found"
+      },
+      "created": "A new Rule Attribute Predicate is created with identifier {{ param }}",
+      "updated": "A Rule Attribute Predicate is updated with identifier {{ param }}",
+      "deleted": "A Rule Attribute Predicate is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Bent u zeker dat u Rule Attribute Predicate {{ id }} wilt verwijderen?"
+      },
+      "detail": {
+        "title": "Rule Attribute Predicate"
+      },
+      "id": "ID",
+      "ruleAttributePredicateId": "Rule Attribute Predicate Id",
+      "ruleId": "Rule Id",
+      "attributeName": "Attribute Name",
+      "operator": "Operator",
+      "attributeValues": "Attribute Values",
+      "ruleId": "Rule Id"
+    }
+  }
+}

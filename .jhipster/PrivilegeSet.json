@@ -1,0 +1,35 @@
+{
+  "applications": ["effOrbac"],
+  "changelogDate": "20221217142749",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "privilege_set",
+  "fields": [
+    {
+      "fieldName": "privilegeSetId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "privilege",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ruleId",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "PrivilegeSet",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "rule",
+      "otherEntityRelationshipName": "ruleId",
+      "relationshipName": "ruleId",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

@@ -1,0 +1,44 @@
+{
+  "applications": ["effOrbac"],
+  "changelogDate": "20221217142449",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "account_jsonattributes",
+  "fields": [
+    {
+      "fieldName": "accountId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "json",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "accountJsonattributeId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "AccountJsonattributes",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "accountSubject",
+      "otherEntityRelationshipName": "accountId",
+      "relationshipName": "accountId",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

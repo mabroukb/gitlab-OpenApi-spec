@@ -1,0 +1,28 @@
+{
+  "effOrbacApp": {
+    "accountSet": {
+      "home": {
+        "title": "Account Sets",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Account Set",
+        "createOrEditLabel": "Create or edit a Account Set",
+        "notFound": "No Account Sets found"
+      },
+      "created": "A new Account Set is created with identifier {{ param }}",
+      "updated": "A Account Set is updated with identifier {{ param }}",
+      "deleted": "A Account Set is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Account Set {{ id }}?"
+      },
+      "detail": {
+        "title": "Account Set"
+      },
+      "id": "ID",
+      "accountSetId": "Account Set Id",
+      "name": "Name",
+      "superSetId": "Super Set Id",
+      "path": "Path",
+      "accountSetId": "Account Set Id"
+    }
+  }
+}

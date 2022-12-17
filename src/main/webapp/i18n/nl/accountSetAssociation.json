@@ -1,0 +1,29 @@
+{
+  "effOrbacApp": {
+    "accountSetAssociation": {
+      "home": {
+        "title": "Account Set Associations",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Maak een nieuwe Account Set Association",
+        "createOrEditLabel": "Maak of wijzig een Account Set Association",
+        "notFound": "No Account Set Associations found"
+      },
+      "created": "A new Account Set Association is created with identifier {{ param }}",
+      "updated": "A Account Set Association is updated with identifier {{ param }}",
+      "deleted": "A Account Set Association is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Bent u zeker dat u Account Set Association {{ id }} wilt verwijderen?"
+      },
+      "detail": {
+        "title": "Account Set Association"
+      },
+      "id": "ID",
+      "accountSetId": "Account Set Id",
+      "accountId": "Account Id",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "accountSetId": "Account Set Id",
+      "accountId": "Account Id"
+    }
+  }
+}

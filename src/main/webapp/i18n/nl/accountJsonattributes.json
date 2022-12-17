@@ -1,0 +1,29 @@
+{
+  "effOrbacApp": {
+    "accountJsonattributes": {
+      "home": {
+        "title": "Account Jsonattributes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Maak een nieuwe Account Jsonattributes",
+        "createOrEditLabel": "Maak of wijzig een Account Jsonattributes",
+        "notFound": "No Account Jsonattributes found"
+      },
+      "created": "A new Account Jsonattributes is created with identifier {{ param }}",
+      "updated": "A Account Jsonattributes is updated with identifier {{ param }}",
+      "deleted": "A Account Jsonattributes is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Bent u zeker dat u Account Jsonattributes {{ id }} wilt verwijderen?"
+      },
+      "detail": {
+        "title": "Account Jsonattributes"
+      },
+      "id": "ID",
+      "accountId": "Account Id",
+      "json": "Json",
+      "accountJsonattributeId": "Account Jsonattribute Id",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "accountId": "Account Id"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "effOrbacApp": {
+    "privilegeSet": {
+      "home": {
+        "title": "Privilege Sets",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Maak een nieuwe Privilege Set",
+        "createOrEditLabel": "Maak of wijzig een Privilege Set",
+        "notFound": "No Privilege Sets found"
+      },
+      "created": "A new Privilege Set is created with identifier {{ param }}",
+      "updated": "A Privilege Set is updated with identifier {{ param }}",
+      "deleted": "A Privilege Set is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Bent u zeker dat u Privilege Set {{ id }} wilt verwijderen?"
+      },
+      "detail": {
+        "title": "Privilege Set"
+      },
+      "id": "ID",
+      "privilegeSetId": "Privilege Set Id",
+      "privilege": "Privilege",
+      "ruleId": "Rule Id",
+      "ruleId": "Rule Id"
+    }
+  }
+}

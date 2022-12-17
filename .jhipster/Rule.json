@@ -1,0 +1,47 @@
+{
+  "applications": ["effOrbac"],
+  "changelogDate": "20221217142349",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "rule",
+  "fields": [
+    {
+      "fieldName": "ruleId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Rule",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "privilegeSet",
+      "otherEntityRelationshipName": "ruleId",
+      "relationshipName": "ruleId",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "ruleAccountSetPredicate",
+      "otherEntityRelationshipName": "ruleId",
+      "relationshipName": "ruleId",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "ruleAttributePredicate",
+      "otherEntityRelationshipName": "ruleId",
+      "relationshipName": "ruleId",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

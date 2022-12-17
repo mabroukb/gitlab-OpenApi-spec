@@ -1,0 +1,37 @@
+{
+  "applications": ["effOrbac"],
+  "changelogDate": "20221217142249",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "account_subject",
+  "fields": [
+    {
+      "fieldName": "accountId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "principal",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "AccountSubject",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "accountSetAssociation",
+      "otherEntityRelationshipName": "accountId",
+      "relationshipName": "accountId",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "accountJsonattributes",
+      "otherEntityRelationshipName": "accountId",
+      "relationshipName": "accountId",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

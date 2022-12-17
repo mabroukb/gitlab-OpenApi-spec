@@ -1,0 +1,134 @@
+<div>
+  <h2 id="page-heading" data-cy="RuleAttributePredicateHeading">
+    <span jhiTranslate="effOrbacApp.ruleAttributePredicate.home.title">Rule Attribute Predicates</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="effOrbacApp.ruleAttributePredicate.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-rule-attribute-predicate"
+        [routerLink]="['/rule-attribute-predicate/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="effOrbacApp.ruleAttributePredicate.home.createLabel"> Create a new Rule Attribute Predicate </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="ruleAttributePredicates?.length === 0">
+    <span jhiTranslate="effOrbacApp.ruleAttributePredicate.home.notFound">No Rule Attribute Predicates found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="ruleAttributePredicates && ruleAttributePredicates.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="ruleAttributePredicateId">
+            <div class="d-flex">
+              <span jhiTranslate="effOrbacApp.ruleAttributePredicate.ruleAttributePredicateId">Rule Attribute Predicate Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="ruleId">
+            <div class="d-flex">
+              <span jhiTranslate="effOrbacApp.ruleAttributePredicate.ruleId">Rule Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="attributeName">
+            <div class="d-flex">
+              <span jhiTranslate="effOrbacApp.ruleAttributePredicate.attributeName">Attribute Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="operator">
+            <div class="d-flex">
+              <span jhiTranslate="effOrbacApp.ruleAttributePredicate.operator">Operator</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="attributeValues">
+            <div class="d-flex">
+              <span jhiTranslate="effOrbacApp.ruleAttributePredicate.attributeValues">Attribute Values</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ruleAttributePredicate of ruleAttributePredicates; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/rule-attribute-predicate', ruleAttributePredicate.id, 'view']">{{ ruleAttributePredicate.id }}</a>
+          </td>
+          <td>{{ ruleAttributePredicate.ruleAttributePredicateId }}</td>
+          <td>{{ ruleAttributePredicate.ruleId }}</td>
+          <td>{{ ruleAttributePredicate.attributeName }}</td>
+          <td>{{ ruleAttributePredicate.operator }}</td>
+          <td>{{ ruleAttributePredicate.attributeValues }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/rule-attribute-predicate', ruleAttributePredicate.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/rule-attribute-predicate', ruleAttributePredicate.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(ruleAttributePredicate)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="ruleAttributePredicates && ruleAttributePredicates.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>
