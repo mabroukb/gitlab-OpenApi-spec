@@ -1,0 +1,108 @@
+application {
+	config {
+		databaseType sql
+        baseName effOrbac
+    	packageName org.mabroukb
+    	authenticationType jwt
+    	prodDatabaseType postgresql
+        enableTranslation true
+    	nativeLanguage en
+    	languages [en, nl]
+        cacheProvider ehcache
+    	buildTool maven
+    	clientFramework angular
+    	testFrameworks [cucumber]
+    }
+    entities *
+    }
+	 
+entity Account {
+	accountId String
+	principal String
+}
+
+entity Rule {
+	ruleId String
+	startDate LocalDate
+    endDate LocalDate 
+}
+
+entity AccountJsonattributes {
+	accountId String
+	json TextBlob
+	accountJsonattributeId String
+	startDate LocalDate
+	endDate LocalDate
+}
+
+entity AccountSet {
+	accountSetId String
+	name String
+	superSetId String
+	path String
+}
+
+entity AccountSetAssociation {
+	accountSetId String
+	accountId String
+	startDate LocalDate
+	endDate LocalDate
+}
+
+entity PrivilegeSet {
+	privilegeSetId String
+	privilege String
+	ruleId String
+}
+
+entity RuleAccountSetPredicate {
+	ruleAccountSetPredicateId String
+	ruleId String
+	accountSetId String
+	operator String
+	predicateOperand String
+}
+
+entity RuleAttributePredicate {
+	ruleAttributePredicateId String
+	ruleId String
+	attributeName String
+	operator String
+	attributeValues String
+}
+
+relationship OneToMany {
+	AccountSetAssociation{accountSetId} to AccountSet{accountSetId}
+}
+relationship OneToMany {
+	AccountSetAssociation{accountId} to Account{accountId}
+}
+relationship OneToMany {
+	AccountJsonattributes{accountId} to Account{accountId}
+}
+relationship OneToMany {
+	PrivilegeSet{ruleId} to Rule{ruleId}
+}
+relationship OneToMany {
+	RuleAccountSetPredicate{ruleId} to Rule{ruleId}
+}
+relationship OneToMany {
+	RuleAttributePredicate{ruleId} to Rule{ruleId}
+}
+
+
+// Set pagination options
+paginate Account, AccountSet with infinite-scroll
+paginate Rule with pagination
+paginate RuleAccountSetPredicate with pagination
+paginate RuleAttributePredicate with pagination
+
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+//service all with serviceImpl except Employee, Job
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
